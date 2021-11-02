@@ -10,7 +10,7 @@ app.use(express.urlencoded({extended: true}))
 const login = {
     username: "raka",
     password: "123"
-    }
+}
 
 app.post("/login", (req, res) => {
     const {username, password} = req.body
@@ -25,7 +25,7 @@ app.post("/login", (req, res) => {
     }
 })
 
-pp.use(function (req, res, next) {
+app.use(function (req, res, next) {
     jwt.verify(req.headers.token, 'rahasia', (err, decoded) => {
         if (err) {
             res.status(401).json({ message: "Error" })
@@ -36,9 +36,11 @@ pp.use(function (req, res, next) {
 })
 
 app.get("/data", (req, res) => {
-    res.send(data)
+    res.status(200).send(data)
 })
 
-app.listen(port, () => {
-    console.log('Listening on port: ', port)
-})
+// app.listen(port, () => {
+//     console.log("listening at port: ", port)
+// })
+
+module.exports = app;
