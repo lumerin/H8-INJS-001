@@ -25,7 +25,7 @@ app.post("/login", (req, res) => {
     }
 })
 
-pp.use(function (req, res, next) {
+app.use(function (req, res, next) {
     jwt.verify(req.headers.token, 'rahasia', (err, decoded) => {
         if (err) {
             res.status(401).json({ message: "Error" })
